@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveThief : MonoBehaviour
+public class Thief : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
     [SerializeField] private Transform _point;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class Signaling : MonoBehaviour
 {
     private ColorChanger[] _environments;
@@ -17,7 +19,7 @@ public class Signaling : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<MoveThief>(out MoveThief thief))
+        if (collision.TryGetComponent<Thief>(out Thief thief))
         {
             _signal.Play();
         }
@@ -25,7 +27,7 @@ public class Signaling : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<MoveThief>(out MoveThief thief))
+        if (collision.TryGetComponent<Thief>(out Thief thief))
         {
             _signal.IncreaseVolume();
 

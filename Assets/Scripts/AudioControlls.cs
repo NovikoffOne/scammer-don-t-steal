@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class AudioControlls : MonoBehaviour
 {
     [SerializeField] private float _waitSeconds = 0.02f;
     [SerializeField] private float _incrementVolume = 0.02f;
     
     private AudioSource _signal;
+    private WaitForSeconds _waitForSeconds;
     private float _target;
 
     private void Start()
     {
         _signal = GetComponent<AudioSource>();
+        _waitForSeconds = new WaitForSeconds(_waitSeconds);
     }
 
     public void Play()
@@ -40,7 +44,7 @@ public class AudioControlls : MonoBehaviour
         {
             _signal.volume = Mathf.MoveTowards(_signal.volume, target, _incrementVolume * Time.deltaTime);
 
-            yield return new WaitForSeconds(_waitSeconds);
+            yield return _waitForSeconds;
         }
 
         if (_signal.volume == target)
