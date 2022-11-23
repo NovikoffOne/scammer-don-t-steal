@@ -8,9 +8,13 @@ public class Thief : MonoBehaviour
     [SerializeField] private Transform _point;
     [SerializeField] private float _waitSeconds = 5f;
 
+    private WaitForSeconds _waitForSeconds;
+
     private void Update()
     {
         StartCoroutine(Move());
+
+        _waitForSeconds = new WaitForSeconds(_waitSeconds);
     }
 
     private IEnumerator Move()
@@ -19,7 +23,7 @@ public class Thief : MonoBehaviour
 
         if(transform.position == _point.position)
         {
-            yield return new WaitForSeconds(_waitSeconds);
+            yield return _waitForSeconds;
 
             _point.position = new Vector3(0, 0, transform.position.z);
 
