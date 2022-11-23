@@ -33,7 +33,7 @@ public class ColorChanger : MonoBehaviour
 
             _target.color = Color.Lerp(_targetColor, _startColor, normalizeRunningTime);
         }
-        else if(_runningTime > _duration)
+        else if (_runningTime > _duration)
         {
             _runningTime = 0;
 
