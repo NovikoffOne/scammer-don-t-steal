@@ -10,11 +10,14 @@ public class Thief : MonoBehaviour
 
     private WaitForSeconds _waitForSeconds;
 
+    private void Start()
+    {
+        _waitForSeconds = new WaitForSeconds(_waitSeconds);
+    }
+
     private void Update()
     {
         StartCoroutine(Move());
-
-        _waitForSeconds = new WaitForSeconds(_waitSeconds);
     }
 
     private IEnumerator Move()
@@ -26,8 +29,6 @@ public class Thief : MonoBehaviour
             yield return _waitForSeconds;
 
             _point.position = new Vector3(0, 0, transform.position.z);
-
-            this.transform.position = Vector3.MoveTowards(transform.position, _point.position, _speed * Time.deltaTime);
         }
     }
 }
